@@ -14,6 +14,8 @@ import {
   ServerConnection
 } from '@jupyterlab/services';
 
+import '../style/index.css';
+
 /**
  * Initialization data for the jupyterlab_xkcd extension.
  */
@@ -29,10 +31,21 @@ const extension: JupyterLabPlugin<void> = {
     widget.id = 'xkcd-jupyterlab';
     widget.title.label = 'xkcd.com';
     widget.title.closable = true;
+    widget.addClass('jp-xkcdWidget');
 
     // Add an image element to the panel
     let img = document.createElement('img');
+    img.className = 'jp-xkcdCartoon';
     widget.node.appendChild(img);
+
+    // Add an attribution badge
+    img.insertAdjacentHTML('afterend',
+      `<div class="jp-xkcdAttribution">
+        <a href="https://creativecommons.org/licenses/by-nc/2.5/" class="jp-xkcdAttribution" target="_blank">
+          <img src="https://licensebuttons.net/l/by-nc/2.5/80x15.png" />
+        </a>
+      </div>`
+    );
 
     // Fetch info about a random comic
     let settings = ServerConnection.makeSettings();
