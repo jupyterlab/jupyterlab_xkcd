@@ -1,9 +1,15 @@
 {
-  "name": "jupyterlab_xkcd",
-  "version": "0.1.0",
+  "name": "@jupyterlab/xkcd-extension",
+  "version": "0.1.1",
   "description": "Show a random xkcd.com comic in a JupyterLab panel",
-  "author": "Peter Parente",
+  "author": "Project Jupyter",
   "main": "lib/index.js",
+  "homepage": "https://github.com/jupyterlab/jupyterlab_xkcd",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/jupyterlab/jupyterlab_xkcd.git"
+  },
+  "license" : "BSD-3-Clause",
   "keywords": [
     "jupyter",
     "jupyterlab"
