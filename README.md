@@ -10,7 +10,7 @@ Show a random xkcd.com comic in a JupyterLab panel
 ## Installation
 
 ```bash
-jupyter labextension install jupyterlab_xkcd
+jupyter labextension install @jupyterlab/xkcd-extension
 ```
 
 ## Development
