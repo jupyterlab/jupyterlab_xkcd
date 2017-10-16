@@ -7,6 +7,10 @@ import {
 } from '@jupyterlab/apputils';
 
 import {
+  ServerConnection
+} from '@jupyterlab/services';
+
+import {
   Widget
 } from '@phosphor/widgets';
 
@@ -28,6 +32,18 @@ const extension: JupyterLabPlugin<void> = {
     widget.id = 'xkcd-jupyterlab';
     widget.title.label = 'xkcd.com';
     widget.title.closable = true;
+
+    // Add an image element to the panel
+    let img = document.createElement('img');
+    widget.node.appendChild(img);
+
+    // Fetch info about a random comic
+    let settings = ServerConnection.makeSettings();
+    ServerConnection.makeRequest({url: 'https:////egszlpbmle.execute-api.us-east-1.amazonaws.com/prod'}, settings).then(response => {
+      img.src = response.data.img;
+      img.alt = response.data.title;
+      img.title = response.data.alt;
+    });
 
     // Add an application command
     const command: string = 'xkcd:open';
