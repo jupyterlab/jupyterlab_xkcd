@@ -1,14 +1,18 @@
 import {
-  JupyterLab, JupyterLabPlugin
+  JupyterLab, JupyterLabPlugin, ILayoutRestorer // new
 } from '@jupyterlab/application';
 
 import {
-  ICommandPalette
+  ICommandPalette, InstanceTracker // new
 } from '@jupyterlab/apputils';
 
 import {
   ServerConnection
 } from '@jupyterlab/services';
+
+import {
+  JSONExt // new
+} from '@phosphor/coreutils';
 
 import {
   Message
@@ -79,7 +83,7 @@ class XkcdWidget extends Widget {
 const extension: JupyterLabPlugin<void> = {
   id: 'jupyterlab_xkcd',
   autoStart: true,
-  requires: [ICommandPalette],
+  requires: [ICommandPalette, ILayoutRestorer],
   activate: activate
 };
 
@@ -87,23 +91,33 @@ const extension: JupyterLabPlugin<void> = {
 /**
  * Activate the xckd widget extension.
  */
-function activate(app: JupyterLab, palette: ICommandPalette) {
+function activate(app: JupyterLab, palette: ICommandPalette, restorer: ILayoutRestorer) {
   console.log('JupyterLab extension jupyterlab_xkcd is activated!');
 
-  // Create a single widget
-  let widget: XkcdWidget = new XkcdWidget();
+  // Declare a widget variable
+  let widget: XkcdWidget;
 
   // Add an application command
   const command: string = 'xkcd:open';
   app.commands.addCommand(command, {
     label: 'Random xkcd comic',
     execute: () => {
+      if (!widget) {
+        // Create a new widget if one does not exist
+        widget = new XkcdWidget();
+        widget.update();
+      }
+      if (!tracker.has(widget)) {
+        // Track the state of the widget for later restoration
+        tracker.add(widget);
+      }
       if (!widget.isAttached) {
         // Attach the widget to the main area if it's not there
         app.shell.addToMainArea(widget);
+      } else {
+        // Refresh the comic in the widget
+        widget.update();
       }
-      // Refresh the comic in the widget
-      widget.update();
       // Activate the widget
       app.shell.activateById(widget.id);
     }
@@ -111,6 +125,14 @@ function activate(app: JupyterLab, palette: ICommandPalette) {
 
   // Add the command to the palette.
   palette.addItem({ command, category: 'Tutorial' });
+
+  // Track and restore the widget state
+  let tracker = new InstanceTracker<Widget>({ namespace: 'xkcd' });
+  restorer.restore(tracker, {
+    command,
+    args: () => JSONExt.emptyObject,
+    name: () => 'xkcd'
+  });
 };
 
 
