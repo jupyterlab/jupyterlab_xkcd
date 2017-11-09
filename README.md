@@ -1,6 +1,6 @@
 # jupyterlab_xkcd
 
-Show a random comic in a JupyterLab panel
+Show a random xkcd.com comic in a JupyterLab panel
 
 
 ## Prerequisites
@@ -10,7 +10,7 @@ Show a random comic in a JupyterLab panel
 ## Installation
 
 ```bash
-jupyter labextension install jupyterlab_xkcd
+jupyter labextension install @jupyterlab/xkcd-extension
 ```
 
 ## Development
@@ -28,4 +28,3 @@ To rebuild the package and the JupyterLab app:
 npm run build
 jupyter lab build
 ```
-
