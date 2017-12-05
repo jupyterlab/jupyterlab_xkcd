@@ -1,4 +1,4 @@
-# jupyterlab_xkcd
+# JupyterLab xkcd-extension
 
 Show a random xkcd.com comic in a JupyterLab panel
 
@@ -10,7 +10,7 @@ Show a random xkcd.com comic in a JupyterLab panel
 ## Installation
 
 ```bash
-jupyter labextension install jupyterlab_xkcd
+jupyter labextension install @jupyterlab/xkcd-extension
 ```
 
 ## Development
@@ -19,6 +19,7 @@ For a development install (requires npm version 4 or later), do the following in
 
 ```bash
 npm install
+npm run build
 jupyter labextension link .
 ```
 
