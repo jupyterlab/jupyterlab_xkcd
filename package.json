@@ -1,6 +1,6 @@
 {
-  "name": "jupyterlab_xkcd",
-  "version": "0.1.0",
+  "name": "@jupyterlab/xkcd-extension",
+  "version": "0.4.0",
   "description": "Show a random xkcd.com comic in a JupyterLab panel",
   "keywords": [
     "jupyter",
