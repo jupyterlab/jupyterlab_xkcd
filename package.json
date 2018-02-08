@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "Show a random xkcd.com comic in a JupyterLab panel",
   "keywords": [
-    "extension",
     "jupyter",
-    "jupyterlab"
+    "jupyterlab",
+    "jupyterlab extension"
   ],
   "homepage": "https://github.com/jupyterlab/jupyterlab_xkcd",
   "bugs": {
