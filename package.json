@@ -5,7 +5,7 @@
   "keywords": [
     "jupyter",
     "jupyterlab",
-    "jupyterlab extension"
+    "jupyterlab-extension"
   ],
   "homepage": "https://github.com/jupyterlab/jupyterlab_xkcd",
   "bugs": {
