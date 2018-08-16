@@ -1,0 +1,42 @@
+{
+  "name": "jupyterlab_xkcd",
+  "version": "0.1.0",
+  "description": "Show a random xkcd.com comic in a JupyterLab panel",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "homepage": "https://github.com/jupyterlab/jupyterlab_xkcd.git",
+  "bugs": {
+    "url": "https://github.com/jupyterlab/jupyterlab_xkcd.git/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Snuffy",
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jupyterlab/jupyterlab_xkcd.git.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "watch": "tsc -w",
+    "prepare": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^0.18.0"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "typescript": "~2.9.2"
+  },
+  "jupyterlab": {
+    "extension": true
+  }
+}
