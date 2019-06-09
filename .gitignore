@@ -1,5 +1,12 @@
+# Distribution / packaging
 *.bundle.*
 lib/
 node_modules/
 *.egg-info/
+
+# Jupyter Notebook Checkpoints
 .ipynb_checkpoints
+
+# PyCharm
+.idea/
+*.iml
