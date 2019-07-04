@@ -1,9 +1,9 @@
 import {
-  JupyterLab, JupyterLabPlugin, ILayoutRestorer
+  JupyterFrontEnd, JupyterFrontEndPlugin, ILayoutRestorer
 } from '@jupyterlab/application';
 
 import {
-  ICommandPalette, InstanceTracker
+  ICommandPalette, WidgetTracker
 } from '@jupyterlab/apputils';
 
 import {
@@ -72,7 +72,7 @@ class XkcdWidget extends Widget {
 /**
  * Activate the xckd widget extension.
  */
-function activate(app: JupyterLab, palette: ICommandPalette, restorer: ILayoutRestorer) {
+function activate(app: JupyterFrontEnd, palette: ICommandPalette, restorer: ILayoutRestorer) {
   console.log('JupyterLab extension jupyterlab_xkcd is activated!');
 
   // Declare a widget variable
@@ -94,7 +94,7 @@ function activate(app: JupyterLab, palette: ICommandPalette, restorer: ILayoutRe
       }
       if (!widget.isAttached) {
         // Attach the widget to the main work area if it's not there
-        app.shell.addToMainArea(widget);
+        app.shell.add(widget, 'main');
       } else {
         // Refresh the comic in the widget
         widget.update();
@@ -108,7 +108,7 @@ function activate(app: JupyterLab, palette: ICommandPalette, restorer: ILayoutRe
   palette.addItem({ command, category: 'Tutorial' });
 
   // Track and restore the widget state
-  let tracker = new InstanceTracker<Widget>({ namespace: 'xkcd' });
+  let tracker = new WidgetTracker<Widget>({ namespace: 'xkcd' });
   restorer.restore(tracker, {
     command,
     args: () => JSONExt.emptyObject,
@@ -120,7 +120,7 @@ function activate(app: JupyterLab, palette: ICommandPalette, restorer: ILayoutRe
 /**
  * Initialization data for the jupyterlab_xkcd extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab_xkcd',
   autoStart: true,
   requires: [ICommandPalette, ILayoutRestorer],

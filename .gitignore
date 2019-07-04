@@ -3,6 +3,9 @@
 lib/
 node_modules/
 *.egg-info/
+yarn.lock
+tsconfig.tsbuildinfo
+package-lock.json
 
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints
