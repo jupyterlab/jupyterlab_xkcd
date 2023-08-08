@@ -1,3 +1,5 @@
+**This repository has been archived as it is deprecated.** Please refer to the official [extension tutorial](https://jupyterlab.readthedocs.io/en/latest/extension/extension_tutorial.html).
+
 # JupyterLab xkcd-extension
 
 Show a random xkcd.com comic in a JupyterLab panel
